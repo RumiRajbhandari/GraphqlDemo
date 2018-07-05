@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
-class StudentAdapter(private val studentList: List<AllStudentsQuery.AllStudent>?): RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+class StudentAdapter(private val studentList: List<Any>?): RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
@@ -20,6 +20,9 @@ class StudentAdapter(private val studentList: List<AllStudentsQuery.AllStudent>?
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student= studentList!![position]
+        if (student is AllStudentsQuery.AllStudent)
+            holder.bind(student.name())
+        else if (student is CreateStudentQuery.CreateStudent)
             holder.bind(student.name())
 
 

@@ -1,0 +1,6 @@
+mutation CreateStudentQuery($name:String!, $address:String){
+  createStudent(name:$name, address:$address){
+    id
+    name
+  }
+}
